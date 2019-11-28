@@ -1,7 +1,7 @@
 divvy
 =====
 
-**divvy** **-n** *jobs* [**-L** lines] [**-d** *delim*] *program* ...
+**divvy** **-n** *jobs* [**-L** *lines*] [**-d** *delim*] *program* ...
 
 Divide input between multiple instances of a utility.
 
