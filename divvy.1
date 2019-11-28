@@ -1,0 +1,43 @@
+.Dd November 28, 2019
+.Dt DIVVY 1
+.Os
+.Sh NAME
+.Nm divvy
+.Nd divide input between multiple instances of a utility
+.Sh SYNOPSIS
+.Nm
+.Fl n Ar jobs
+.Op Fl L Ar lines
+.Op Fl d Ar delim
+.Ar program
+.Ar ...
+.Sh DESCRIPTION
+Reads batches of
+.Ar lines
+(1 by default)
+lines
+or items delimited by
+.Ar delim
+from standard input and sends them to up to
+.Ar jobs
+instances of the given
+.Ar program
+in a round-robin fashion.
+.Sh EXIT STATUS
+Exits 0 on success,
+123 if a
+.Ar program
+exits with a nonzero status code,
+or 1 if another error occurs.
+.Sh EXAMPLES
+Divide a SQL file between 4 Postgres clients, in batches of 50 statements:
+.Pp
+.Dl $ divvy -n4 -L50 -d\e; psql <inserts.sql
+.Pp
+The first client will receive the first 50 statements,
+the second the next 50, and so on.
+.Sh SEE ALSO
+.Xr xargs 1
+.Sh AUTHORS
+.An Sijmen J. Mulder
+.Aq Mt ik@sjmulder.nl
