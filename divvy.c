@@ -32,6 +32,11 @@ main(int argc, char **argv)
 	char *cursor, *sep_pos;
 	int status, ret = 0;
 
+#ifdef __OpenBSD__
+	if (pledge("stdio proc exec", NULL) == -1)
+		err(1, "pledge");
+#endif
+
 	while ((opt = getopt(argc, argv, "n:L:d:")) != -1) {
 		switch (opt) {
 		case 'n':
