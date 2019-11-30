@@ -1,11 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdnoreturn.h>
 #include <string.h>
 #include <errno.h>
 #include <sys/wait.h>
 #include <unistd.h>
 #include <err.h>
+
+#if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
+# include <stdnoreturn.h>
+#else
+# define noreturn __attribute__((noreturn))
+#endif
 
 #define MAX_JOBS 512
 
